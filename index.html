@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>İyi ki Doğdun!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: linear-gradient(135deg, #ffe4ec 0%, #fbeaff 100%);
+    html, body {
+      height: 100%;
       font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      text-align: center;
-      padding: 40px 20px 100px;
-      position: relative;
       overflow-x: hidden;
     }
 
+    /* Açılış Ekranı */
+    #intro {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #fff0f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1.5s ease;
+    }
+
+    .flower {
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at center, #e91e63 40%, transparent 41%),
+                  radial-gradient(circle at top left, #f06292 40%, transparent 41%),
+                  radial-gradient(circle at top right, #f06292 40%, transparent 41%),
+                  radial-gradient(circle at bottom left, #f06292 40%, transparent 41%),
+                  radial-gradient(circle at bottom right, #f06292 40%, transparent 41%);
+      background-size: 60px 60px;
+      background-repeat: no-repeat;
+      background-position: center, top left, top right, bottom left, bottom right;
+      border-radius: 50%;
+      animation: growFade 3s ease-out forwards;
+    }
+
+    @keyframes growFade {
+      0% { transform: scale(0.2); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Kalpler ve Yıldızlar */
     .heart-container, .star-container {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -31,14 +58,11 @@
 
     .heart {
       position: absolute;
-      top: -20px;
       width: 20px;
       height: 20px;
       background: #e91e63;
       transform: rotate(-45deg);
-      animation-name: floatDown;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
+      animation: floatDown 6s linear forwards;
       opacity: 0.8;
     }
     .heart:before,
@@ -51,9 +75,10 @@
       border-radius: 50%;
     }
     .heart:before { top: -10px; left: 0; }
-    .heart:after  { left: 10px; top: 0; }
+    .heart:after  { top: 0; left: 10px; }
+
     @keyframes floatDown {
-      0%   { transform: translateY(-10vh) scale(1) rotate(-45deg); opacity: 0.8; }
+      0% { transform: translateY(-10vh) scale(1) rotate(-45deg); opacity: 0.8; }
       100% { transform: translateY(110vh) scale(1.5) rotate(-45deg); opacity: 0; }
     }
 
@@ -65,14 +90,27 @@
       border-radius: 50%;
       opacity: 0.8;
       filter: drop-shadow(0 0 3px white);
-      animation-name: twinkle;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-in-out;
+      animation: twinkle 2s ease-in-out infinite;
     }
 
     @keyframes twinkle {
       0%, 100% { opacity: 0.8; transform: scale(1); }
       50% { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    #mainContent {
+      display: none;
+      animation: fadeIn 2s ease forwards;
+      background: linear-gradient(135deg, #ffe4ec 0%, #fbeaff 100%);
+      min-height: 100vh;
+      padding: 40px 20px 100px;
+      text-align: center;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     h1 {
@@ -90,9 +128,6 @@
       font-weight: 600;
       margin-top: 20px;
       min-height: 50px;
-      transition: opacity 0.5s ease;
-      z-index: 10;
-      position: relative;
     }
 
     .photo-container {
@@ -102,13 +137,12 @@
       border-radius: 20px;
       box-shadow: 0 12px 25px rgba(0,0,0,0.25);
       overflow: hidden;
-      z-index: 10;
-      position: relative;
+      margin-left: auto;
+      margin-right: auto;
     }
     .photo-container img {
       width: 100%;
       height: auto;
-      display: block;
       border-radius: 20px 20px 0 0;
     }
     .caption {
@@ -119,45 +153,48 @@
       padding: 12px 18px 18px 18px;
       background: #fbeaff;
       border-radius: 0 0 20px 20px;
-      user-select: none;
     }
 
-    /* Mobil uyum */
     @media (max-width: 600px) {
-      h1 {
-        font-size: 40px;
-      }
-
-      #sequenceTextContainer {
-        font-size: 16px;
-      }
-
-      .caption {
-        font-size: 15px;
-        padding: 10px;
-      }
-
-      .photo-container {
-        width: 80vw;
-      }
+      h1 { font-size: 40px; }
+      #sequenceTextContainer { font-size: 16px; }
+      .caption { font-size: 15px; padding: 10px; }
+      .photo-container { width: 85vw; }
     }
   </style>
 </head>
 <body>
+  <!-- Açılış -->
+  <div id="intro">
+    <div class="flower"></div>
+  </div>
 
+  <!-- Kalpler ve Yıldızlar -->
   <div class="heart-container"></div>
   <div class="star-container"></div>
 
-  <h1>İyi ki doğdun...</h1>
-
-  <div id="sequenceTextContainer"></div>
-
-  <div class="photo-container">
-    <img src="kucukluk.jpg" alt="Küçüklük Fotoğrafı" />
-    <div class="caption">Her zaman bu küçük kız kadar mutlu ol 💜</div>
+  <!-- Ana İçerik -->
+  <div id="mainContent">
+    <h1>İyi ki doğdun...</h1>
+    <div id="sequenceTextContainer"></div>
+    <div class="photo-container">
+      <img src="kucukluk.jpg" alt="Küçüklük Fotoğrafı" />
+      <div class="caption">Her zaman bu küçük kız kadar mutlu ol 💜</div>
+    </div>
   </div>
 
   <script>
+    // Açılış animasyonu
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("intro").style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById("intro").style.display = "none";
+          document.getElementById("mainContent").style.display = "block";
+        }, 1500);
+      }, 3000);
+    });
+
     // Kalpler
     const heartContainer = document.querySelector('.heart-container');
     function createHeart() {
@@ -184,7 +221,7 @@
     }
     setInterval(createStar, 150);
 
-    // Yazılar sırayla göster
+    // Sıralı yazılar
     const textContainer = document.getElementById("sequenceTextContainer");
     const messages = [
       "İyi ki doğdun...",
@@ -199,6 +236,5 @@
     }
     showNextMessage();
   </script>
-
 </body>
 </html>
