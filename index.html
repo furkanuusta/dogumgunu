@@ -13,9 +13,9 @@
       overflow-x: hidden;
     }
 
-    /* Açılış Ekranı */
     #intro {
       position: fixed;
+      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       background: #fff0f5;
@@ -26,76 +26,63 @@
       transition: opacity 1.5s ease;
     }
 
-    .flower {
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle at center, #e91e63 40%, transparent 41%),
-                  radial-gradient(circle at top left, #f06292 40%, transparent 41%),
-                  radial-gradient(circle at top right, #f06292 40%, transparent 41%),
-                  radial-gradient(circle at bottom left, #f06292 40%, transparent 41%),
-                  radial-gradient(circle at bottom right, #f06292 40%, transparent 41%);
-      background-size: 60px 60px;
-      background-repeat: no-repeat;
-      background-position: center, top left, top right, bottom left, bottom right;
-      border-radius: 50%;
-      animation: growFade 3s ease-out forwards;
+    svg.flower-svg {
+      width: 150px;
+      height: 150px;
     }
 
-    @keyframes growFade {
-      0% { transform: scale(0.2); opacity: 0; }
-      50% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
+    .stem, .leaf, .bud, .petal {
+      opacity: 0;
+      transform-origin: center;
     }
 
-    /* Kalpler ve Yıldızlar */
-    .heart-container, .star-container {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
+    .stem {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: drawStem 1s ease forwards;
     }
 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #e91e63;
-      transform: rotate(-45deg);
-      animation: floatDown 6s linear forwards;
-      opacity: 0.8;
-    }
-    .heart:before,
-    .heart:after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #e91e63;
-      border-radius: 50%;
-    }
-    .heart:before { top: -10px; left: 0; }
-    .heart:after  { top: 0; left: 10px; }
-
-    @keyframes floatDown {
-      0% { transform: translateY(-10vh) scale(1) rotate(-45deg); opacity: 0.8; }
-      100% { transform: translateY(110vh) scale(1.5) rotate(-45deg); opacity: 0; }
+    .leaf {
+      transform: scale(0);
+      animation: growLeaf 0.5s ease forwards;
+      animation-delay: 1s;
     }
 
-    .star {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      filter: drop-shadow(0 0 3px white);
-      animation: twinkle 2s ease-in-out infinite;
+    .bud {
+      transform: scale(0);
+      animation: growBud 0.5s ease forwards;
+      animation-delay: 1.5s;
     }
 
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.8; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.7); }
+    .petal {
+      transform: scale(0);
+      animation: bloom 0.6s ease forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes drawStem {
+      to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+    @keyframes growLeaf {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    @keyframes growBud {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    @keyframes bloom {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     #mainContent {
@@ -103,9 +90,8 @@
       animation: fadeIn 2s ease forwards;
       background: linear-gradient(135deg, #ffe4ec 0%, #fbeaff 100%);
       min-height: 100vh;
-      padding: 40px 20px 100px;
+      padding: 40px 20px;
       text-align: center;
-      position: relative;
     }
 
     @keyframes fadeIn {
@@ -118,8 +104,6 @@
       font-size: 60px;
       color: #e91e63;
       margin-bottom: 10px;
-      z-index: 10;
-      position: relative;
     }
 
     #sequenceTextContainer {
@@ -164,16 +148,16 @@
   </style>
 </head>
 <body>
-  <!-- Açılış -->
   <div id="intro">
-    <div class="flower"></div>
+    <svg class="flower-svg" viewBox="0 0 100 100">
+      <line x1="50" y1="100" x2="50" y2="60" stroke="#4caf50" stroke-width="2" class="stem"/>
+      <ellipse cx="45" cy="65" rx="4" ry="2" fill="#81c784" class="leaf"/>
+      <ellipse cx="55" cy="65" rx="4" ry="2" fill="#81c784" class="leaf"/>
+      <circle cx="50" cy="55" r="4" fill="#f06292" class="bud"/>
+      <circle cx="50" cy="45" r="10" fill="#e91e63" class="petal"/>
+    </svg>
   </div>
 
-  <!-- Kalpler ve Yıldızlar -->
-  <div class="heart-container"></div>
-  <div class="star-container"></div>
-
-  <!-- Ana İçerik -->
   <div id="mainContent">
     <h1>İyi ki doğdun...</h1>
     <div id="sequenceTextContainer"></div>
@@ -184,7 +168,6 @@
   </div>
 
   <script>
-    // Açılış animasyonu
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("intro").style.opacity = 0;
@@ -192,36 +175,9 @@
           document.getElementById("intro").style.display = "none";
           document.getElementById("mainContent").style.display = "block";
         }, 1500);
-      }, 3000);
+      }, 4000);
     });
 
-    // Kalpler
-    const heartContainer = document.querySelector('.heart-container');
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 2) + 's';
-      heart.style.opacity = Math.random() * 0.6 + 0.4;
-      heartContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 250);
-
-    // Yıldızlar
-    const starContainer = document.querySelector('.star-container');
-    function createStar() {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.animationDuration = (1 + Math.random() * 2) + 's';
-      starContainer.appendChild(star);
-      setTimeout(() => star.remove(), 4000);
-    }
-    setInterval(createStar, 150);
-
-    // Sıralı yazılar
     const textContainer = document.getElementById("sequenceTextContainer");
     const messages = [
       "İyi ki doğdun...",
