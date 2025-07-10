@@ -1,126 +1,146 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>İyi ki Doğdun!</title>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: linear-gradient(135deg, #ffe4ec 0%, #fbeaff 100%);
-    font-family: 'Poppins', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    padding: 40px 20px 100px;
-    position: relative;
-    overflow-x: hidden;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İyi ki Doğdun!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #ffe4ec 0%, #fbeaff 100%);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 40px 20px 100px;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-  .heart-container, .star-container {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
-  }
+    .heart-container, .star-container {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-  .heart {
-    position: absolute;
-    top: -20px;
-    width: 20px;
-    height: 20px;
-    background: #e91e63;
-    transform: rotate(-45deg);
-    animation-name: floatDown;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
-    opacity: 0.8;
-  }
-  .heart:before,
-  .heart:after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #e91e63;
-    border-radius: 50%;
-  }
-  .heart:before { top: -10px; left: 0; }
-  .heart:after  { left: 10px; top: 0; }
-  @keyframes floatDown {
-    0%   { transform: translateY(-10vh) scale(1) rotate(-45deg); opacity: 0.8; }
-    100% { transform: translateY(110vh) scale(1.5) rotate(-45deg); opacity: 0; }
-  }
+    .heart {
+      position: absolute;
+      top: -20px;
+      width: 20px;
+      height: 20px;
+      background: #e91e63;
+      transform: rotate(-45deg);
+      animation-name: floatDown;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+      opacity: 0.8;
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #e91e63;
+      border-radius: 50%;
+    }
+    .heart:before { top: -10px; left: 0; }
+    .heart:after  { left: 10px; top: 0; }
+    @keyframes floatDown {
+      0%   { transform: translateY(-10vh) scale(1) rotate(-45deg); opacity: 0.8; }
+      100% { transform: translateY(110vh) scale(1.5) rotate(-45deg); opacity: 0; }
+    }
 
-  .star {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    filter: drop-shadow(0 0 3px white);
-    animation-name: twinkle;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 3px white);
+      animation-name: twinkle;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
 
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(0.7); }
-  }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.7); }
+    }
 
-  h1 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 60px;
-    color: #e91e63;
-    margin-bottom: 10px;
-    z-index: 10;
-    position: relative;
-  }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 60px;
+      color: #e91e63;
+      margin-bottom: 10px;
+      z-index: 10;
+      position: relative;
+    }
 
-  #sequenceTextContainer {
-    font-size: 20px;
-    color: #6a1b9a;
-    font-weight: 600;
-    margin-top: 20px;
-    min-height: 50px;
-    transition: opacity 0.5s ease;
-    z-index: 10;
-    position: relative;
-  }
+    #sequenceTextContainer {
+      font-size: 20px;
+      color: #6a1b9a;
+      font-weight: 600;
+      margin-top: 20px;
+      min-height: 50px;
+      transition: opacity 0.5s ease;
+      z-index: 10;
+      position: relative;
+    }
 
-  .photo-container {
-    margin-top: 30px;
-    width: 400px;
-    max-width: 90vw;
-    border-radius: 20px;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-    overflow: hidden;
-    z-index: 10;
-    position: relative;
-  }
-  .photo-container img {
-    width: 100%;
-    display: block;
-    border-radius: 20px 20px 0 0;
-  }
-  .caption {
-    font-family: 'Comfortaa', cursive;
-    font-size: 22px;
-    color: #6a1b9a;
-    font-weight: 600;
-    padding: 20px 25px 25px 25px;
-    background: #fbeaff;
-    border-radius: 0 0 20px 20px;
-    user-select: none;
-  }
-</style>
+    .photo-container {
+      margin-top: 30px;
+      width: 400px;
+      max-width: 90vw;
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+      overflow: hidden;
+      z-index: 10;
+      position: relative;
+    }
+    .photo-container img {
+      width: 100%;
+      display: block;
+      border-radius: 20px 20px 0 0;
+    }
+    .caption {
+      font-family: 'Comfortaa', cursive;
+      font-size: 22px;
+      color: #6a1b9a;
+      font-weight: 600;
+      padding: 20px 25px 25px 25px;
+      background: #fbeaff;
+      border-radius: 0 0 20px 20px;
+      user-select: none;
+    }
+
+    /* Mobil uyum */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      #sequenceTextContainer {
+        font-size: 16px;
+      }
+
+      .caption {
+        font-size: 16px;
+        padding: 15px;
+      }
+
+      .photo-container {
+        width: 90vw;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -148,7 +168,6 @@
       heartContainer.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-    // Kalp sayısını artırdım, daha hızlı çıkıyor
     setInterval(createHeart, 250);
 
     // Yıldızlar
@@ -164,7 +183,7 @@
     }
     setInterval(createStar, 150);
 
-    // Yazı animasyonu
+    // Yazılar sırayla göster
     const textContainer = document.getElementById("sequenceTextContainer");
     const messages = [
       "İyi ki doğdun...",
