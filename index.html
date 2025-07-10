@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>İyi ki Doğdun!</title>
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -11,11 +11,11 @@
       height: 100%;
       font-family: 'Poppins', sans-serif;
       overflow-x: hidden;
+      background: #fff0f5;
     }
 
     #intro {
       position: fixed;
-      top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       background: #fff0f5;
@@ -26,58 +26,43 @@
       transition: opacity 1.5s ease;
     }
 
-    svg.flower-svg {
-      width: 150px;
-      height: 150px;
+    svg#flower {
+      width: 200px;
+      height: 200px;
     }
 
-    .stem, .leaf, .bud, .petal {
-      opacity: 0;
-      transform-origin: center;
-    }
-
-    .stem {
+    .draw {
       stroke-dasharray: 100;
       stroke-dashoffset: 100;
-      animation: drawStem 1s ease forwards;
+      animation: draw 1.2s ease forwards;
     }
 
-    .leaf {
-      transform: scale(0);
-      animation: growLeaf 0.5s ease forwards;
-      animation-delay: 1s;
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
     }
 
-    .bud {
+    .grow {
       transform: scale(0);
-      animation: growBud 0.5s ease forwards;
-      animation-delay: 1.5s;
+      opacity: 0;
+      animation: grow 0.6s ease-out forwards;
+    }
+
+    @keyframes grow {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .petal {
       transform: scale(0);
-      animation: bloom 0.6s ease forwards;
-      animation-delay: 2s;
+      opacity: 0;
+      transform-origin: center;
+      animation: bloom 0.6s ease-out forwards;
     }
 
-    @keyframes drawStem {
-      to {
-        stroke-dashoffset: 0;
-        opacity: 1;
-      }
-    }
-    @keyframes growLeaf {
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-    @keyframes growBud {
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
     @keyframes bloom {
       to {
         transform: scale(1);
@@ -90,8 +75,9 @@
       animation: fadeIn 2s ease forwards;
       background: linear-gradient(135deg, #ffe4ec 0%, #fbeaff 100%);
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 40px 20px 100px;
       text-align: center;
+      position: relative;
     }
 
     @keyframes fadeIn {
@@ -104,6 +90,8 @@
       font-size: 60px;
       color: #e91e63;
       margin-bottom: 10px;
+      z-index: 10;
+      position: relative;
     }
 
     #sequenceTextContainer {
@@ -148,16 +136,23 @@
   </style>
 </head>
 <body>
+  <!-- Açılış Buket -->
   <div id="intro">
-    <svg class="flower-svg" viewBox="0 0 100 100">
-      <line x1="50" y1="100" x2="50" y2="60" stroke="#4caf50" stroke-width="2" class="stem"/>
-      <ellipse cx="45" cy="65" rx="4" ry="2" fill="#81c784" class="leaf"/>
-      <ellipse cx="55" cy="65" rx="4" ry="2" fill="#81c784" class="leaf"/>
-      <circle cx="50" cy="55" r="4" fill="#f06292" class="bud"/>
-      <circle cx="50" cy="45" r="10" fill="#e91e63" class="petal"/>
+    <svg id="flower" viewBox="0 0 100 100">
+      <!-- Gövde -->
+      <line x1="50" y1="100" x2="50" y2="60" stroke="#4caf50" stroke-width="2" class="draw" />
+      <!-- Yapraklar -->
+      <ellipse cx="45" cy="70" rx="4" ry="2" fill="#81c784" class="grow" style="animation-delay:1.2s"/>
+      <ellipse cx="55" cy="70" rx="4" ry="2" fill="#81c784" class="grow" style="animation-delay:1.2s"/>
+      <!-- Petaller -->
+      <circle cx="50" cy="50" r="10" fill="#f06292" class="petal" style="animation-delay:1.8s"/>
+      <circle cx="40" cy="52" r="8" fill="#f8bbd0" class="petal" style="animation-delay:2s"/>
+      <circle cx="60" cy="52" r="8" fill="#f8bbd0" class="petal" style="animation-delay:2.2s"/>
+      <circle cx="50" cy="40" r="7" fill="#ec407a" class="petal" style="animation-delay:2.4s"/>
     </svg>
   </div>
 
+  <!-- İçerik -->
   <div id="mainContent">
     <h1>İyi ki doğdun...</h1>
     <div id="sequenceTextContainer"></div>
@@ -175,7 +170,7 @@
           document.getElementById("intro").style.display = "none";
           document.getElementById("mainContent").style.display = "block";
         }, 1500);
-      }, 4000);
+      }, 4000); // toplam 4sn animasyon süresi
     });
 
     const textContainer = document.getElementById("sequenceTextContainer");
