@@ -10,7 +10,7 @@ body, html {
 .scene {
   position: relative;
   width: 320px;
-  height: auto; /* Yükseklik otomatik */
+
   margin: 300px auto 0 auto; /* Pastayı aşağı indirdim (500’den 300’e) */
   padding-bottom: 30px;
 }
