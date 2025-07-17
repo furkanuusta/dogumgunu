@@ -1,143 +1,352 @@
-/* Genel Ayarlar */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Genel ayarlar */
 body, html {
+  margin: 0; padding: 0;
   height: 100%;
-  width: 100%;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  background: linear-gradient(to bottom, #ffe6f0, #ffffff);
-  overflow-x: hidden;
+  background: #d66f94;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* Scroll tamamen kaldırılmadı, normal scroll çalışacak */
 }
 
-/* Pasta Konteyneri */
-.cake-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+.scene {
   position: relative;
-  padding-bottom: 80px;
+  width: 320px;
+  height: auto; /* Yükseklik otomatik */
+  margin: 380px auto 0 auto; /* Pastayı aşağı indirdim (500’den 300’e) */
+  padding-bottom: 30px;
 }
 
-/* Kek Katmanları */
-.layer {
-  width: 180px;
-  height: 50px;
-  background: #8B4513;
-  margin-bottom: 5px;
-  border-radius: 10px;
-  position: relative;
-  animation: drop 1s ease-out forwards;
-  opacity: 0;
-}
-
-.layer:nth-child(1) {
-  animation-delay: 0.5s;
-}
-.layer:nth-child(2) {
-  animation-delay: 1s;
-}
-.layer:nth-child(3) {
-  animation-delay: 1.5s;
-}
-
-/* Çikolata Katmanı */
-.layer::after {
-  content: '';
+.plate {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  background: #5C2E00;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 15px;
+  background: white;
+  border-radius: 4px;
+  border: 1.5px solid #f5f5f5;
+  box-shadow: inset 0 2px 5px rgba(200,200,200,0.5);
+  z-index: 1;
+}
+
+.cake-layer {
+  position: absolute;
+  left: 50%;
+  width: 220px;
+  height: 45px;
   border-radius: 10px;
+  background: #6b4226;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-400px);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+  z-index: 5;
+}
+
+#cake1 {
+  bottom: 45px;
+  z-index: 5;
+}
+#chocolate1 {
+  position: absolute;
+  left: 50%;
+  width: 200px;
+  height: 12px;
+  background: linear-gradient(90deg, #3b1f0b, #5c3317);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-80px);
+  transition: opacity 1s ease;
+  z-index: 6;
+  bottom: 90px;
+}
+
+#cake2 {
+  bottom: 105px;
+  z-index: 7;
+}
+#chocolate2 {
+  position: absolute;
+  left: 50%;
+  width: 200px;
+  height: 12px;
+  background: linear-gradient(90deg, #3b1f0b, #5c3317);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-80px);
+  transition: opacity 1s ease;
+  z-index: 8;
+  bottom: 150px;
+}
+
+#cake3 {
+  bottom: 165px;
+  z-index: 9;
+}
+
+/* Krema */
+.icing {
+  position: absolute;
+  width: 240px;
+  height: 35px;
+  background: #fff9f0;
+  border-radius: 30px 30px 60px 60px;
+  box-shadow: inset 0 0 15px #fff7e7;
+  left: 50%;
+  bottom: 210px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
+  transition: none;
+  z-index: 10;
+  filter: drop-shadow(0 0 10px #fff9e0);
+  animation-fill-mode: forwards;
+}
+
+/* Krema dalgalı iniş animasyonu */
+@keyframes icingWave {
+  0% {
+    transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
+    border-radius: 30px 30px 60px 60px;
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(-50%) translateY(-20px) scaleX(1.1) scaleY(1.1);
+    border-radius: 40px 40px 40px 40px;
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-50%) translateY(10px) scaleX(0.95) scaleY(1.05);
+    border-radius: 30px 30px 60px 60px;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scaleX(1) scaleY(1);
+    border-radius: 30px 30px 60px 60px;
+    opacity: 1;
+  }
 }
 
 /* Mum */
 .candle {
-  width: 10px;
-  height: 40px;
-  background: #FFD700;
-  margin-top: -10px;
-  position: relative;
-  z-index: 3;
-  animation: fadeIn 1s ease-out forwards;
+  position: absolute;
+  bottom: 130px;
+  left: 50%;
+  width: 25px;
+  height: 120px;
+  background: #ff0095;
+  border-radius: 6px;
+  box-shadow: 0 0 16px gold;
+  transform: translateX(-25%) translateY(-40px);
   opacity: 0;
-  animation-delay: 2.5s;
+  transition: opacity 0.7s ease;
+  z-index: 1;
 }
 
-/* Alev */
 .flame {
-  width: 12px;
-  height: 20px;
-  background: radial-gradient(circle, #FF4500 40%, transparent 70%);
-  border-radius: 50%;
   position: absolute;
   top: -20px;
-  left: -1px;
-  animation: flicker 0.2s infinite alternate;
-}
-
-/* Doğum Günü Mesajı */
-.birthday-text {
-  text-align: center;
-  font-size: 20px;
-  color: #d60087;
-  margin-top: 30px;
-  animation: fadeIn 1s ease-out forwards;
+  left: 50%;
+  width: 20px;
+  height: 35px;
+  background: radial-gradient(circle at center, #ffcc33 40%, transparent 75%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: translateX(-50%);
   opacity: 0;
-  animation-delay: 3s;
-  position: relative;
+  filter: drop-shadow(0 0 6px #ffcc33);
+  animation: flame-flicker 1s infinite;
+  animation-play-state: paused;
 }
 
-/* Animasyonlar */
-@keyframes drop {
-  0% {
-    transform: translateY(-200px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* Konfetiler */
+#confetti-container {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 15;
 }
 
-@keyframes flicker {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.1);
-    opacity: 0.7;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+.birthday-text {
+  position: absolute;
+  bottom: -40px; /* Pasta tabağının hemen altında */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Pacifico', cursive;
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  z-index: 20;
+  user-select: none;
 }
+
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Kalp animasyonu (ikinci sahne) */
+#hearts-container {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 30;
+}
+
+.heart {
+  position: absolute;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background: #ff6f91;
+  transform: rotate(-45deg);
+  animation: fallHeart linear forwards;
+  opacity: 0.8;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff6f91;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes fallHeart {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+    opacity: 0.8;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  100% {
+    transform: translateY(110vh) rotate(-45deg);
+    opacity: 0;
   }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .layer {
-    width: 130px;
-    height: 40px;
-  }
+/* Işıltılar */
+#sparkles-container {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 35;
+}
 
-  .birthday-text {
-    font-size: 16px;
-    padding: 0 20px;
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 8px white);
+  animation: sparkleTwinkle 3s infinite ease-in-out;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0; }
+}
+
+/* İkinci sayfa stili */
+#mainContent {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+  background: #d66f94;
+  min-height: auto; /* scroll için auto */
+  padding: 40px 20px 100px;
+  text-align: center;
+  position: relative; /* fixed kaldırıldı */
+  top: auto; left: auto; right: auto; bottom: auto;
+  overflow-y: auto; /* scroll aktif */
+  max-height: 100vh; /* maksimum yüksekliği sınırla */
+  z-index: 20;
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+  color: #e91e63;
+  margin-bottom: 10px;
+}
+
+#sequenceTextContainer {
+  font-size: 20px;
+  color: #6a1b9a;
+  font-weight: 600;
+  margin-top: 20px;
+  min-height: 50px;
+}
+
+/* Fotoğraf kapsayıcısı */
+.photo-container {
+  position: relative; /* önemli */
+  margin-top: 30px;
+  width: 240px;
+  max-width: 90vw;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Fotoğraf */
+.photo-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Fotoğrafın üstüne yazı */
+.top-text {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+  font-size: 14px;
+  color: #6a1b9a;
+  font-weight: 600;
+  background: rgba(251, 234, 255, 0.7);
+  border-radius: 12px;
+  padding: 4px 8px;
+  z-index: 15;
+  box-shadow: 0 0 6px rgba(106, 27, 154, 0.4);
+}
+
+/* Caption görünmez yapıldı */
+.caption {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .photo-container {
+    width: 80vw !important;
+  }
+  .top-text {
+    font-size: 12px;
+    padding: 3px 6px;
   }
 }
