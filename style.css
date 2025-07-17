@@ -21,7 +21,7 @@ body, html {
   transform: translateX(-50%);
   width: 280px;
   height: 15px;
-  background: rgb(0, 0, 0);
+  background: white;
   border-radius: 4px;
   border: 1.5px solid #f5f5f5;
   box-shadow: inset 0 2px 5px rgba(200,200,200,0.5);
@@ -46,16 +46,26 @@ body, html {
   bottom: 45px;
   z-index: 5;
 }
-#cake2 {
-  bottom: 90px;
+#chocolate1 {
+  position: absolute;
+  left: 50%;
+  width: 200px;
+  height: 12px;
+  background: linear-gradient(90deg, #3b1f0b, #5c3317);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-80px);
+  transition: opacity 1s ease;
   z-index: 6;
-}
-#cake3 {
-  bottom: 135px;
-  z-index: 7;
+  bottom: 90px;
 }
 
-.chocolate-layer {
+#cake2 {
+  bottom: 105px;
+  z-index: 7;
+}
+#chocolate2 {
   position: absolute;
   left: 50%;
   width: 200px;
@@ -67,26 +77,11 @@ body, html {
   transform: translateX(-50%) translateY(-80px);
   transition: opacity 1s ease;
   z-index: 8;
-  animation-fill-mode: forwards;
+  bottom: 150px;
 }
 
-@keyframes chocolateFlowDown {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-80px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-#chocolate1 {
-  bottom: 80px;
-  z-index: 8;
-}
-#chocolate2 {
-  bottom: 125px;
+#cake3 {
+  bottom: 165px;
   z-index: 9;
 }
 
@@ -99,7 +94,7 @@ body, html {
   border-radius: 30px 30px 60px 60px;
   box-shadow: inset 0 0 15px #fff7e7;
   left: 50%;
-  bottom: 180px;
+  bottom: 210px;
   opacity: 0;
   transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
   transition: none;
@@ -134,7 +129,7 @@ body, html {
 /* Mum */
 .candle {
   position: absolute;
-  bottom: 140px;
+  bottom: 130px;
   left: 50%;
   width: 25px;
   height: 120px;
@@ -162,79 +157,37 @@ body, html {
   animation-play-state: paused;
 }
 
-@keyframes flame-flicker {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-  50% { transform: translateX(calc(-50% + 2px)) scale(1.1); opacity: 0.7; }
-}
-
-.hidden {
-  display: none;
-}
-
-/* İkinci sayfa stili */
-
-#mainContent {
-  display: none;
-  animation: fadeIn 2s ease forwards;
-  background: #d66f94; /* İlk sahnedeki arka plan ile aynı */
-  min-height: 100vh;
-  padding: 40px 20px 100px;
-  text-align: center;
-  position: fixed; /* Tam ekran yap */
+/* Konfetiler */
+#confetti-container {
+  position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
-  z-index: 20;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 15;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.birthday-message {
+  position: fixed;
+  bottom: 10vh;
+    left: 0%;
+  width: 100%;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 36px;
+  color: #ff69b4;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  animation: fadeIn 2s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 60px;
-  color: #e91e63;
-  margin-bottom: 10px;
-}
 
-#sequenceTextContainer {
-  font-size: 20px;
-  color: #6a1b9a;
-  font-weight: 600;
-  margin-top: 20px;
-  min-height: 50px;
-}
-
-.photo-container {
-  margin-top: 30px;
-  width: 170px;
-  max-width: 80vw;
-  border-radius: 20px;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-  overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.photo-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px 20px 0 0;
-}
-
-.caption {
-  font-family: 'Comfortaa', cursive;
-  font-size: 16px;
-  color: #6a1b9a;
-  font-weight: 600;
-  padding: 10px 16px 16px 16px;
-  background: #fbeaff;
-  border-radius: 0 0 20px 20px;
-}
-
-/* Kalp animasyonu */
-
+/* Kalp animasyonu (ikinci sahne) */
 #hearts-container {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -284,6 +237,93 @@ h1 {
     transform: translateY(110vh) rotate(-45deg);
     opacity: 0;
   }
+}
+
+/* Işıltılar */
+#sparkles-container {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 35;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 8px white);
+  animation: sparkleTwinkle 3s infinite ease-in-out;
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0; }
+}
+
+/* İkinci sayfa stili */
+
+#mainContent {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+  background: #d66f94; /* İlk sahnedeki arka plan ile aynı */
+  min-height: 100vh;
+  padding: 40px 20px 100px;
+  text-align: center;
+  position: fixed; /* Tam ekran yap */
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 20;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+  color: #e91e63;
+  margin-bottom: 10px;
+}
+
+#sequenceTextContainer {
+  font-size: 20px;
+  color: #6a1b9a;
+  font-weight: 600;
+  margin-top: 20px;
+  min-height: 50px;
+}
+.photo-container {
+  margin-top: 30px;
+  width: 240px;
+  max-width: 90vw; /* mobil için daha uyumlu hale getirildi */
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+  object-fit: contain;
+}
+
+.caption {
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  color: #6a1b9a;
+  font-weight: 600;
+  padding: 10px 16px 16px 16px;
+  background: #fbeaff;
+  border-radius: 0 0 20px 20px;
 }
 
 @media (max-width: 600px) {
