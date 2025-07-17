@@ -298,10 +298,12 @@ h1 {
   margin-top: 20px;
   min-height: 50px;
 }
+
 .photo-container {
+  position: relative;  /* önemli! */
   margin-top: 30px;
   width: 240px;
-  max-width: 90vw; /* mobil için daha uyumlu hale getirildi */
+  max-width: 90vw;
   border-radius: 20px;
   box-shadow: 0 12px 25px rgba(0,0,0,0.25);
   overflow: hidden;
@@ -312,23 +314,42 @@ h1 {
 .photo-container img {
   width: 100%;
   height: auto;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px; /* tüm köşeler yuvarlak */
   object-fit: contain;
+  display: block;
 }
 
 .caption {
+  position: absolute;  /* Üstüne yerleştir */
+  top: 15px;           /* Fotoğrafın üstünden biraz içeri */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(251, 234, 255, 0.8);  /* biraz transparan arka plan */
+  padding: 8px 16px;
+  border-radius: 15px;
   font-family: 'Comfortaa', cursive;
   font-size: 16px;
   color: #6a1b9a;
   font-weight: 600;
-  padding: 10px 16px 16px 16px;
-  background: #fbeaff;
-  border-radius: 0 0 20px 20px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
+  pointer-events: none;  /* üstündeki yazı tıklamayı engellemesin */
 }
 
 @media (max-width: 600px) {
-  h1 { font-size: 40px; }
-  #sequenceTextContainer { font-size: 16px; }
-  .caption { font-size: 14px; padding: 8px; }
-  .photo-container { width: 80vw; }
+  .photo-container {
+    width: 80vw !important;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  #sequenceTextContainer {
+    font-size: 16px;
+  }
+  .caption {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
 }
+
