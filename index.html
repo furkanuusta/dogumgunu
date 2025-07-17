@@ -4,35 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Doğum Günü Pastası</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="hearts-container"></div>
-
+  <!-- Birinci sahne -->
   <div class="scene">
     <div class="plate"></div>
 
-    <div id="cake1" class="cake-layer hidden"></div>
-    <div id="chocolate1" class="chocolate-layer hidden"></div>
+    <div id="cake1" class="cake-layer"></div>
+    <div id="chocolate1" class="chocolate-layer"></div>
 
-    <div id="cake2" class="cake-layer hidden"></div>
-    <div id="chocolate2" class="chocolate-layer hidden"></div>
+    <div id="cake2" class="cake-layer"></div>
+    <div id="chocolate2" class="chocolate-layer"></div>
 
-    <div id="cake3" class="cake-layer hidden"></div>
-    <div id="icing" class="icing hidden"></div>
+    <div id="cake3" class="cake-layer"></div>
 
-    <div id="candle" class="candle hidden">
+
+    <div class="candle">
       <div class="flame"></div>
     </div>
+
+    <div class="birthday-message">Doğum Günün Kutlu Olsun</div>
+
+
+    <!-- Konfetiler -->
+    <div id="confetti-container"></div>
   </div>
 
-  <div id="mainContent" style="display: none;">
+  <!-- İkinci sahne -->
+  <div id="mainContent" style="display:none;">
     <h1>İyi ki doğdun...</h1>
     <div id="sequenceTextContainer"></div>
     <div class="photo-container">
       <img src="kucukluk.jpg" alt="Küçüklük Fotoğrafı" />
       <div class="caption">Her zaman bu küçük kız kadar mutlu ol 💜</div>
     </div>
+
+    <!-- Kalpler ve ışıltılar -->
+    <div id="hearts-container"></div>
+    <div id="sparkles-container"></div>
   </div>
 
   <script src="script.js"></script>
