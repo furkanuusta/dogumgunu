@@ -4,22 +4,20 @@ body, html {
   height: 100%;
   background: #d66f94;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   /* Scrollu tamamen kaldırdık */
+  /* Scroll tamamen kaldırılmadı, normal scroll çalışacak */
 }
 
 .scene {
   position: relative;
   width: 320px;
-  height: auto; /* Yüksekliği otomatik yap */
-  margin-top: 200px !important; /* Üst boşluğu artırdım, pastayı aşağı indirir */
+  height: auto; /* Yükseklik otomatik */
+  margin: 300px auto 0 auto; /* Pastayı aşağı indirdim (500’den 300’e) */
   padding-bottom: 30px;
 }
 
-
-
 .plate {
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   width: 280px;
@@ -46,7 +44,7 @@ body, html {
 }
 
 #cake1 {
-  bottom: 10px;
+  bottom: 45px;
   z-index: 5;
 }
 #chocolate1 {
@@ -61,11 +59,11 @@ body, html {
   transform: translateX(-50%) translateY(-80px);
   transition: opacity 1s ease;
   z-index: 6;
-  bottom: 55px;
+  bottom: 90px;
 }
 
 #cake2 {
-  bottom: 70px;
+  bottom: 105px;
   z-index: 7;
 }
 #chocolate2 {
@@ -80,11 +78,11 @@ body, html {
   transform: translateX(-50%) translateY(-80px);
   transition: opacity 1s ease;
   z-index: 8;
-  bottom: 115px;
+  bottom: 150px;
 }
 
 #cake3 {
-  bottom: 130px;
+  bottom: 165px;
   z-index: 9;
 }
 
@@ -174,7 +172,7 @@ body, html {
 .birthday-message {
   position: fixed;
   bottom: 10vh;
-    left: 0%;
+  left: 0%;
   width: 100%;
   text-align: center;
   font-family: 'Pacifico', cursive;
@@ -188,7 +186,6 @@ body, html {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 
 /* Kalp animasyonu (ikinci sahne) */
 #hearts-container {
@@ -268,23 +265,18 @@ body, html {
 }
 
 /* İkinci sayfa stili */
-
 #mainContent {
   display: none;
   animation: fadeIn 2s ease forwards;
   background: #d66f94;
-  min-height: auto; /* 100vh yerine auto */
+  min-height: auto; /* scroll için auto */
   padding: 40px 20px 100px;
   text-align: center;
-  position: relative; /* fixed kaldır */
+  position: relative; /* fixed kaldırıldı */
   top: auto; left: auto; right: auto; bottom: auto;
-  overflow: visible; /* scroll aktif olsun */
+  overflow-y: auto; /* scroll aktif */
+  max-height: 100vh; /* maksimum yüksekliği sınırla */
   z-index: 20;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 h1 {
@@ -302,28 +294,9 @@ h1 {
   min-height: 50px;
 }
 
-.caption {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(251, 234, 255, 0.85);
-  padding: 8px 16px;
-  border-radius: 15px;
-  font-family: 'Comfortaa', cursive;
-  font-size: 16px;
-  color: #6a1b9a;
-  font-weight: 600;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
-  pointer-events: none;
-  word-wrap: break-word;
-  z-index: 20; /* Görünsün diye yüksek z-index */
-}
-
+/* Fotoğraf kapsayıcısı */
 .photo-container {
-  position: relative; /* Mutlaka relative olmalı */
+  position: relative; /* önemli */
   margin-top: 30px;
   width: 240px;
   max-width: 90vw;
@@ -334,6 +307,7 @@ h1 {
   margin-right: auto;
 }
 
+/* Fotoğraf */
 .photo-container img {
   width: 100%;
   height: auto;
@@ -341,9 +315,11 @@ h1 {
   display: block;
   object-fit: contain;
 }
+
+/* Fotoğrafın üstüne yazı */
 .top-text {
   position: absolute;
-  top: 8px; /* yukarıdan biraz boşluk */
+  top: 8px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -359,34 +335,17 @@ h1 {
   box-shadow: 0 0 6px rgba(106, 27, 154, 0.4);
 }
 
-/* Caption üstte, mobilde de uyumlu olacak şekilde */
+/* Caption görünmez yapıldı */
 .caption {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(251, 234, 255, 0.85);
-  padding: 8px 16px;
-  border-radius: 15px;
-  font-family: 'Comfortaa', cursive;
-  font-size: 16px;
-  color: #6a1b9a;
-  font-weight: 600;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
-  pointer-events: none;
-  word-wrap: break-word;
-  z-index: 20; /* Görünsün diye yüksek z-index */
+  display: none;
 }
 
 @media (max-width: 600px) {
   .photo-container {
     width: 80vw !important;
   }
-  .caption {
-    font-size: 14px;
-    padding: 6px 12px;
-    top: 8px;
+  .top-text {
+    font-size: 12px;
+    padding: 3px 6px;
   }
 }
