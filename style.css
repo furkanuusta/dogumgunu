@@ -4,18 +4,17 @@ body, html {
   height: 100%;
   background: #d66f94;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   /* Scrollu tamamen kaldırdık */
+  /* scroll aktif */
+  overflow-y: auto;
 }
 
 .scene {
   position: relative;
   width: 320px;
-  height: auto; /* Yüksekliği otomatik yap */
-  margin: 120px auto 40px auto; /* Alt margin biraz boşluk için */
+  height: auto; /* otomatik yükseklik */
+  margin: 120px auto 40px auto;
   padding-bottom: 30px;
 }
-
-
 
 .plate {
   position: absolute;
@@ -45,10 +44,7 @@ body, html {
   z-index: 5;
 }
 
-#cake1 {
-  bottom: 45px;
-  z-index: 5;
-}
+#cake1 { bottom: 45px; z-index: 5; }
 #chocolate1 {
   position: absolute;
   left: 50%;
@@ -64,10 +60,7 @@ body, html {
   bottom: 90px;
 }
 
-#cake2 {
-  bottom: 105px;
-  z-index: 7;
-}
+#cake2 { bottom: 105px; z-index: 7; }
 #chocolate2 {
   position: absolute;
   left: 50%;
@@ -83,10 +76,7 @@ body, html {
   bottom: 150px;
 }
 
-#cake3 {
-  bottom: 165px;
-  z-index: 9;
-}
+#cake3 { bottom: 165px; z-index: 9; }
 
 /* Krema */
 .icing {
@@ -104,29 +94,6 @@ body, html {
   z-index: 10;
   filter: drop-shadow(0 0 10px #fff9e0);
   animation-fill-mode: forwards;
-}
-
-/* Krema dalgalı iniş animasyonu */
-@keyframes icingWave {
-  0% {
-    transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
-    border-radius: 30px 30px 60px 60px;
-    opacity: 0;
-  }
-  40% {
-    transform: translateX(-50%) translateY(-20px) scaleX(1.1) scaleY(1.1);
-    border-radius: 40px 40px 40px 40px;
-    opacity: 1;
-  }
-  70% {
-    transform: translateX(-50%) translateY(10px) scaleX(0.95) scaleY(1.05);
-    border-radius: 30px 30px 60px 60px;
-  }
-  100% {
-    transform: translateX(-50%) translateY(0) scaleX(1) scaleY(1);
-    border-radius: 30px 30px 60px 60px;
-    opacity: 1;
-  }
 }
 
 /* Mum */
@@ -174,7 +141,7 @@ body, html {
 .birthday-message {
   position: fixed;
   bottom: 10vh;
-    left: 0%;
+  left: 0;
   width: 100%;
   text-align: center;
   font-family: 'Pacifico', cursive;
@@ -183,12 +150,6 @@ body, html {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   animation: fadeIn 2s ease-in-out;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 
 /* Kalp animasyonu (ikinci sahne) */
 #hearts-container {
@@ -268,23 +229,16 @@ body, html {
 }
 
 /* İkinci sayfa stili */
-
 #mainContent {
   display: none;
   animation: fadeIn 2s ease forwards;
-  background: #d66f94;
-  min-height: auto; /* 100vh yerine auto */
+  background: #d66f94; /* İlk sahnedeki arka plan ile aynı */
+  min-height: 100vh;
   padding: 40px 20px 100px;
   text-align: center;
-  position: relative; /* fixed kaldır */
-  top: auto; left: auto; right: auto; bottom: auto;
-  overflow: visible; /* scroll aktif olsun */
+  position: relative; /* fixed kaldırdık */
+  overflow-y: auto; /* scroll aktif */
   z-index: 20;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 h1 {
@@ -302,28 +256,7 @@ h1 {
   min-height: 50px;
 }
 
-.caption {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(251, 234, 255, 0.85);
-  padding: 8px 16px;
-  border-radius: 15px;
-  font-family: 'Comfortaa', cursive;
-  font-size: 16px;
-  color: #6a1b9a;
-  font-weight: 600;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
-  pointer-events: none;
-  word-wrap: break-word;
-  z-index: 20; /* Görünsün diye yüksek z-index */
-}
-
 .photo-container {
-  position: relative; /* Mutlaka relative olmalı */
   margin-top: 30px;
   width: 240px;
   max-width: 90vw;
@@ -332,44 +265,37 @@ h1 {
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+}
+
+/* Caption fotoğrafın üstüne */
+.caption {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  color: #6a1b9a;
+  font-weight: 600;
+  padding: 10px 16px;
+  background: rgba(251, 234, 255, 0.8);
+  border-radius: 0 0 20px 20px;
+  margin: 0 20px;
+  text-align: center;
+  z-index: 10;
 }
 
 .photo-container img {
   width: 100%;
   height: auto;
-  border-radius: 20px;
-  display: block;
+  border-radius: 20px 20px 0 0;
   object-fit: contain;
 }
 
-/* Caption üstte, mobilde de uyumlu olacak şekilde */
-.caption {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(251, 234, 255, 0.85);
-  padding: 8px 16px;
-  border-radius: 15px;
-  font-family: 'Comfortaa', cursive;
-  font-size: 16px;
-  color: #6a1b9a;
-  font-weight: 600;
-  max-width: 90%;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
-  pointer-events: none;
-  word-wrap: break-word;
-  z-index: 20; /* Görünsün diye yüksek z-index */
-}
-
 @media (max-width: 600px) {
-  .photo-container {
-    width: 80vw !important;
-  }
-  .caption {
-    font-size: 14px;
-    padding: 6px 12px;
-    top: 8px;
-  }
+  h1 { font-size: 40px; }
+  #sequenceTextContainer { font-size: 16px; }
+  .caption { font-size: 14px; padding: 8px; top: 10px; }
+  .photo-container { width: 80vw; }
 }
