@@ -1,39 +1,33 @@
 /* Genel ayarlar */
-body {
-  background: linear-gradient(135deg, #ffd6e8, #ffb3d1);
+body, html {
   margin: 0; padding: 0;
+  height: 100%;
+  background: #d66f94;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden; /* Scrollu tamamen kaldırdık */
 }
 
 .scene {
   position: relative;
   width: 320px;
   height: 350px;
+  margin: 120px auto 0 auto;
 }
 
-/* Tabak */
 .plate {
-  width: 280px;
-  height: 15px;
-  background: black;
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
+  width: 280px;
+  height: 15px;
+  background: white;
   border-radius: 4px;
-  border: 1.5px solid #222;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+  border: 1.5px solid #f5f5f5;
+  box-shadow: inset 0 2px 5px rgba(200,200,200,0.5);
   z-index: 1;
 }
 
-/* Kek katmanları */
 .cake-layer {
   position: absolute;
   left: 50%;
@@ -53,15 +47,14 @@ body {
   z-index: 5;
 }
 #cake2 {
-  bottom: 92px;
+  bottom: 90px;
   z-index: 6;
 }
 #cake3 {
-  bottom: 139px;
+  bottom: 135px;
   z-index: 7;
 }
 
-/* Çikolata katmanları */
 .chocolate-layer {
   position: absolute;
   left: 50%;
@@ -93,7 +86,7 @@ body {
   z-index: 8;
 }
 #chocolate2 {
-  bottom: 127px;
+  bottom: 125px;
   z-index: 9;
 }
 
@@ -106,7 +99,7 @@ body {
   border-radius: 30px 30px 60px 60px;
   box-shadow: inset 0 0 15px #fff7e7;
   left: 50%;
-  bottom: 185px;
+  bottom: 180px;
   opacity: 0;
   transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
   transition: none;
@@ -140,31 +133,31 @@ body {
 
 /* Mum */
 .candle {
-  width: 26px;
-  height: 100px;
-  background: #ff0099;
-  border-radius: 6px;
   position: absolute;
-  bottom: 200px; 
-  left: 53%;
-  transform: translateX(-75%);
+  bottom: 140px;
+  left: 50%;
+  width: 25px;
+  height: 120px;
+  background: #ff0095;
+  border-radius: 6px;
+  box-shadow: 0 0 16px gold;
+  transform: translateX(-25%) translateY(-40px);
   opacity: 0;
-  transition: transform 1s ease, opacity 0.7s ease;
-  box-shadow: 0 0 14px gold;
-  z-index: 4;
+  transition: opacity 0.7s ease;
+  z-index: 1;
 }
 
 .flame {
-  width: 30px;
-  height: 45px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 20px;
+  height: 35px;
   background: radial-gradient(circle at center, #ffcc33 40%, transparent 75%);
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  position: absolute;
-  top: -25px;
-  left: 50%;
   transform: translateX(-50%);
   opacity: 0;
-  filter: drop-shadow(0 0 8px #ffcc33);
+  filter: drop-shadow(0 0 6px #ffcc33);
   animation: flame-flicker 1s infinite;
   animation-play-state: paused;
 }
@@ -174,113 +167,128 @@ body {
   50% { transform: translateX(calc(-50% + 2px)) scale(1.1); opacity: 0.7; }
 }
 
-/* Yazı */
-.birthday-message {
-  margin-top: 20px;
-  font-size: 2.5rem;
-  color: #fff0f5;
-  text-shadow: 0 0 8px #ff69b4, 0 0 12px #ff1493;
-  animation: fadeInUp 2s ease forwards;
-  opacity: 0;
+.hidden {
+  display: none;
+}
+
+/* İkinci sayfa stili */
+
+#mainContent {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+  background: #d66f94; /* İlk sahnedeki arka plan ile aynı */
+  min-height: 100vh;
+  padding: 40px 20px 100px;
+  text-align: center;
+  position: fixed; /* Tam ekran yap */
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
   z-index: 20;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Konfeti ve kalpler konteynerleri üstte, tüm genişlik */
-#confetti-container,
-#heart-container {
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+  color: #e91e63;
+  margin-bottom: 10px;
+}
+
+#sequenceTextContainer {
+  font-size: 20px;
+  color: #6a1b9a;
+  font-weight: 600;
+  margin-top: 20px;
+  min-height: 50px;
+}
+
+.photo-container {
+  margin-top: 30px;
+  width: 240px;
+  max-width: 80vw;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+}
+
+.caption {
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  color: #6a1b9a;
+  font-weight: 600;
+  padding: 10px 16px 16px 16px;
+  background: #fbeaff;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Kalp animasyonu */
+
+#hearts-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
+  top: 0; left: 0; right: 0;
   height: 100vh;
   pointer-events: none;
   overflow: visible;
-  z-index: 1000;
+  z-index: 30;
 }
 
-/* Konfeti stili */
-.confetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #ff69b4;
-  opacity: 0.8;
-  border-radius: 2px;
-  animation: confetti-fall linear forwards;
-}
-
-/* Konfeti farklı renkler */
-.confetti:nth-child(2n) {
-  background-color: #ff1493;
-}
-.confetti:nth-child(3n) {
-  background-color: #ff85b3;
-}
-
-/* Konfeti düşüş animasyonu */
-@keyframes confetti-fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* Kalp stili */
 .heart {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: #ff1493;
-  clip-path: polygon(
-    50% 0%, 80% 25%, 80% 60%, 50% 100%, 20% 60%, 20% 25%
-  );
-  opacity: 0.9;
-  animation: heart-fall linear forwards;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background: #ff6f91;
+  transform: rotate(-45deg);
+  animation: fallHeart linear forwards;
+  opacity: 0.8;
 }
 
-/* Kalp düşüş animasyonu */
-@keyframes heart-fall {
-  to {
-    transform: translateY(110vh);
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff6f91;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes fallHeart {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(-45deg);
     opacity: 0;
   }
 }
 
-/* Hafif yumuşak ışık efekti */
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 20%, transparent 70%);
-  animation: pulseLight 4s infinite alternate;
-  pointer-events: none;
-  z-index: 900;
-}
-
-@keyframes pulseLight {
-  0% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 0.6;
-  }
-}
-
-/* Gizleme sınıfı */
-.hidden {
-  display: none;
+@media (max-width: 600px) {
+  h1 { font-size: 40px; }
+  #sequenceTextContainer { font-size: 16px; }
+  .caption { font-size: 14px; padding: 8px; }
+  .photo-container { width: 80vw; }
 }
