@@ -1,85 +1,294 @@
-@keyframes backgroundMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Genel ayarlar */
+body, html {
+  margin: 0; padding: 0;
+  height: 100%;
+  background: #d66f94;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Scrollu tamamen kaldırdık */
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
-  background-size: 400% 400%;
-  animation: backgroundMove 10s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+.scene {
+  position: relative;
+  width: 320px;
+  height: 350px;
+  margin: 120px auto 0 auto;
 }
 
-.container {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  max-width: 600px;
-  animation: fadeIn 1s ease;
+.plate {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 15px;
+  background: white;
+  border-radius: 4px;
+  border: 1.5px solid #f5f5f5;
+  box-shadow: inset 0 2px 5px rgba(200,200,200,0.5);
+  z-index: 1;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+.cake-layer {
+  position: absolute;
+  left: 50%;
+  width: 220px;
+  height: 45px;
+  border-radius: 10px;
+  background: #6b4226;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-400px);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+  z-index: 5;
 }
 
-h1 {
-  font-size: 32px;
-  color: #e91e63;
-  font-family: 'Dancing Script', cursive;
+#cake1 {
+  bottom: 45px;
+  z-index: 5;
+}
+#cake2 {
+  bottom: 90px;
+  z-index: 6;
+}
+#cake3 {
+  bottom: 135px;
+  z-index: 7;
 }
 
-.message {
-  font-size: 20px;
-  margin: 20px 0;
-  color: #444;
-  font-family: 'Dancing Script', cursive;
+.chocolate-layer {
+  position: absolute;
+  left: 50%;
+  width: 200px;
+  height: 12px;
+  background: linear-gradient(90deg, #3b1f0b, #5c3317);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-80px);
+  transition: opacity 1s ease;
+  z-index: 8;
+  animation-fill-mode: forwards;
 }
 
-button {
-  background-color: #ff69b4;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-family: 'Dancing Script', cursive;
+@keyframes chocolateFlowDown {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 15px rgba(255, 105, 180, 0.4);
+#chocolate1 {
+  bottom: 80px;
+  z-index: 8;
+}
+#chocolate2 {
+  bottom: 125px;
+  z-index: 9;
 }
 
-#surprise {
-  margin-top: 30px;
-  animation: fadeIn 1.5s ease;
+/* Krema */
+.icing {
+  position: absolute;
+  width: 240px;
+  height: 35px;
+  background: #fff9f0;
+  border-radius: 30px 30px 60px 60px;
+  box-shadow: inset 0 0 15px #fff7e7;
+  left: 50%;
+  bottom: 180px;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
+  transition: none;
+  z-index: 10;
+  filter: drop-shadow(0 0 10px #fff9e0);
+  animation-fill-mode: forwards;
+}
+
+/* Krema dalgalı iniş animasyonu */
+@keyframes icingWave {
+  0% {
+    transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
+    border-radius: 30px 30px 60px 60px;
+    opacity: 0;
+  }
+  40% {
+    transform: translateX(-50%) translateY(-20px) scaleX(1.1) scaleY(1.1);
+    border-radius: 40px 40px 40px 40px;
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-50%) translateY(10px) scaleX(0.95) scaleY(1.05);
+    border-radius: 30px 30px 60px 60px;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scaleX(1) scaleY(1);
+    border-radius: 30px 30px 60px 60px;
+    opacity: 1;
+  }
+}
+
+/* Mum */
+.candle {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  width: 25px;
+  height: 120px;
+  background: #ff0095;
+  border-radius: 6px;
+  box-shadow: 0 0 16px gold;
+  transform: translateX(-25%) translateY(-40px);
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  z-index: 1;
+}
+
+.flame {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 20px;
+  height: 35px;
+  background: radial-gradient(circle at center, #ffcc33 40%, transparent 75%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: translateX(-50%);
+  opacity: 0;
+  filter: drop-shadow(0 0 6px #ffcc33);
+  animation: flame-flicker 1s infinite;
+  animation-play-state: paused;
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+  50% { transform: translateX(calc(-50% + 2px)) scale(1.1); opacity: 0.7; }
 }
 
 .hidden {
   display: none;
 }
 
-#typingText {
-  font-size: 20px;
-  color: #555;
-  margin-top: 15px;
-  font-family: 'Dancing Script', cursive;
+/* İkinci sayfa stili */
+
+#mainContent {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+  background: #d66f94; /* İlk sahnedeki arka plan ile aynı */
+  min-height: 100vh;
+  padding: 40px 20px 100px;
+  text-align: center;
+  position: fixed; /* Tam ekran yap */
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 20;
 }
 
-img {
-  width: 150px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+  color: #e91e63;
+  margin-bottom: 10px;
+}
+
+#sequenceTextContainer {
+  font-size: 20px;
+  color: #6a1b9a;
+  font-weight: 600;
   margin-top: 20px;
-  border-radius: 10px;
+  min-height: 50px;
+}
+
+.photo-container {
+  margin-top: 30px;
+  width: 240px;
+  max-width: 80vw;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+}
+
+.caption {
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  color: #6a1b9a;
+  font-weight: 600;
+  padding: 10px 16px 16px 16px;
+  background: #fbeaff;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Kalp animasyonu */
+
+#hearts-container {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 30;
+}
+
+.heart {
+  position: absolute;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background: #ff6f91;
+  transform: rotate(-45deg);
+  animation: fallHeart linear forwards;
+  opacity: 0.8;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff6f91;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes fallHeart {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 40px; }
+  #sequenceTextContainer { font-size: 16px; }
+  .caption { font-size: 14px; padding: 8px; }
+  .photo-container { width: 80vw; }
 }
