@@ -1,206 +1,286 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Genel ayarlar */
 body {
-  background: linear-gradient(to top, #ffdee9, #b5fffc);
+  background: linear-gradient(135deg, #ffd6e8, #ffb3d1);
+  margin: 0; padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
-}
-
-/* Giriş Ekranı */
-.intro-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  z-index: 1000;
+  position: relative;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: fadeOut 2s ease 3s forwards;
 }
 
-.flower {
-  width: 100px;
-  height: auto;
-  opacity: 0;
-  animation: fadeIn 2s ease forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* Ana İçerik */
-.main-content {
-  padding-top: 100px;
-  text-align: center;
-}
-
-.photo-section {
-  margin-bottom: 60px;
-}
-
-.responsive-photo {
-  max-width: 85vw;
-  max-height: 70vh;
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px auto;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  object-fit: cover;
-}
-
-.message {
-  font-size: 1.2rem;
-  color: #333;
-  margin-top: 15px;
-  padding: 0 20px;
-}
-
-/* Pasta Animasyonu */
-.cake-container {
+.scene {
   position: relative;
-  width: 180px;
-  height: 300px;
-  margin: 0 auto;
-  transform: translateY(30px); /* Aşağı indirme */
+  width: 320px;
+  height: 350px;
 }
 
+/* Tabak */
 .plate {
-  width: 180px;
-  height: 20px;
-  background: #ccc;
-  border-radius: 50%;
+  width: 280px;
+  height: 15px;
+  background: black;
   position: absolute;
-  bottom: 0;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  border: 1.5px solid #222;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+  z-index: 1;
 }
 
+/* Kek katmanları */
 .cake-layer {
-  width: 150px;
-  height: 40px;
-  background: #8B4513;
+  position: absolute;
+  left: 50%;
+  width: 220px;
+  height: 45px;
   border-radius: 10px;
-  position: absolute;
-  left: 15px;
-  animation: drop 0.8s ease forwards;
+  background: #6b4226;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.25);
   opacity: 0;
+  transform: translateX(-50%) translateY(-400px);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s ease;
+  z-index: 5;
 }
 
-.layer1 {
-  bottom: 20px;
-  animation-delay: 0.2s;
+#cake1 {
+  bottom: 45px;
+  z-index: 5;
 }
-.layer2 {
-  bottom: 60px;
-  animation-delay: 0.8s;
+#cake2 {
+  bottom: 92px;
+  z-index: 6;
 }
-.layer3 {
-  bottom: 100px;
-  animation-delay: 1.4s;
+#cake3 {
+  bottom: 139px;
+  z-index: 7;
 }
 
-@keyframes drop {
+/* Çikolata katmanları */
+.chocolate-layer {
+  position: absolute;
+  left: 50%;
+  width: 200px;
+  height: 12px;
+  background: linear-gradient(90deg, #3b1f0b, #5c3317);
+  border-radius: 6px;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateX(-50%) translateY(-80px);
+  transition: opacity 1s ease;
+  z-index: 8;
+  animation-fill-mode: forwards;
+}
+
+@keyframes chocolateFlowDown {
   0% {
-    transform: translateY(-100px);
     opacity: 0;
+    transform: translateX(-50%) translateY(-80px);
   }
   100% {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
 
+#chocolate1 {
+  bottom: 80px;
+  z-index: 8;
+}
+#chocolate2 {
+  bottom: 127px;
+  z-index: 9;
+}
+
+/* Krema */
 .icing {
-  width: 150px;
-  height: 20px;
-  background: #fff0f5;
-  border-radius: 0 0 10px 10px;
   position: absolute;
-  left: 15px;
-  bottom: 140px;
-  animation: drip 1s ease 2.2s forwards;
+  width: 240px;
+  height: 35px;
+  background: #fff9f0;
+  border-radius: 30px 30px 60px 60px;
+  box-shadow: inset 0 0 15px #fff7e7;
+  left: 50%;
+  bottom: 185px;
   opacity: 0;
+  transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
+  transition: none;
+  z-index: 10;
+  filter: drop-shadow(0 0 10px #fff9e0);
+  animation-fill-mode: forwards;
 }
 
-@keyframes drip {
+/* Krema dalgalı iniş animasyonu */
+@keyframes icingWave {
   0% {
-    height: 0;
+    transform: translateX(-50%) translateY(-60px) scaleX(0.9) scaleY(0.8);
+    border-radius: 30px 30px 60px 60px;
     opacity: 0;
   }
+  40% {
+    transform: translateX(-50%) translateY(-20px) scaleX(1.1) scaleY(1.1);
+    border-radius: 40px 40px 40px 40px;
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(-50%) translateY(10px) scaleX(0.95) scaleY(1.05);
+    border-radius: 30px 30px 60px 60px;
+  }
   100% {
-    height: 20px;
+    transform: translateX(-50%) translateY(0) scaleX(1) scaleY(1);
+    border-radius: 30px 30px 60px 60px;
     opacity: 1;
   }
 }
 
+/* Mum */
 .candle {
-  width: 10px;
-  height: 30px;
-  background: #ff69b4;
+  width: 26px;
+  height: 100px;
+  background: #ff0099;
+  border-radius: 6px;
   position: absolute;
-  left: 85px;
-  bottom: 160px;
-  animation: appear 0.5s ease 3s forwards;
+  bottom: 200px; 
+  left: 53%;
+  transform: translateX(-75%);
   opacity: 0;
-}
-
-@keyframes appear {
-  to {
-    opacity: 1;
-  }
+  transition: transform 1s ease, opacity 0.7s ease;
+  box-shadow: 0 0 14px gold;
+  z-index: 4;
 }
 
 .flame {
-  width: 10px;
-  height: 10px;
-  background: radial-gradient(circle, orange, red, yellow);
-  border-radius: 50%;
+  width: 30px;
+  height: 45px;
+  background: radial-gradient(circle at center, #ffcc33 40%, transparent 75%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   position: absolute;
-  top: -12px;
-  left: 0;
-  animation: flicker 0.1s infinite alternate;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  filter: drop-shadow(0 0 8px #ffcc33);
+  animation: flame-flicker 1s infinite;
+  animation-play-state: paused;
 }
 
-@keyframes flicker {
+@keyframes flame-flicker {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+  50% { transform: translateX(calc(-50% + 2px)) scale(1.1); opacity: 0.7; }
+}
+
+/* Yazı */
+.birthday-message {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  color: #fff0f5;
+  text-shadow: 0 0 8px #ff69b4, 0 0 12px #ff1493;
+  animation: fadeInUp 2s ease forwards;
+  opacity: 0;
+  z-index: 20;
+}
+
+@keyframes fadeInUp {
   from {
-    transform: scale(1);
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: scale(1.2);
-    opacity: 0.8;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Mobil uyum */
-@media screen and (max-width: 450px) {
-  .responsive-photo {
-    max-width: 90vw;
-    max-height: 60vh;
-  }
+/* Konfeti ve kalpler konteynerleri üstte, tüm genişlik */
+#confetti-container,
+#heart-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 1000;
+}
 
-  .message {
-    font-size: 1rem;
-  }
+/* Konfeti stili */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff69b4;
+  opacity: 0.8;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+}
 
-  .cake-container {
-    transform: translateY(20px);
+/* Konfeti farklı renkler */
+.confetti:nth-child(2n) {
+  background-color: #ff1493;
+}
+.confetti:nth-child(3n) {
+  background-color: #ff85b3;
+}
+
+/* Konfeti düşüş animasyonu */
+@keyframes confetti-fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
   }
+}
+
+/* Kalp stili */
+.heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #ff1493;
+  clip-path: polygon(
+    50% 0%, 80% 25%, 80% 60%, 50% 100%, 20% 60%, 20% 25%
+  );
+  opacity: 0.9;
+  animation: heart-fall linear forwards;
+}
+
+/* Kalp düşüş animasyonu */
+@keyframes heart-fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* Hafif yumuşak ışık efekti */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 20%, transparent 70%);
+  animation: pulseLight 4s infinite alternate;
+  pointer-events: none;
+  z-index: 900;
+}
+
+@keyframes pulseLight {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Gizleme sınıfı */
+.hidden {
+  display: none;
 }
