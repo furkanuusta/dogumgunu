@@ -1,17 +1,27 @@
 /* Genel ayarlar */
 body, html {
-  margin: 0; padding: 0;
+  margin: 0;
+  padding: 0;
   height: 100%;
-  background: #d66f94;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  /* Scroll tamamen kaldırılmadı, normal scroll çalışacak */
+  overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
+}
+
+.first-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* pastayı dikeyde ortalamak için */
+  align-items: center;
+  position: relative;
 }
 
 .scene {
   position: relative;
   width: 320px;
-  margin-bottom: 40px; /* Pasta aşağıya insin diye boşluk bırak */
+  margin-bottom: 40px; /* yazı ile arasında boşluk */
 }
+
 
 .plate {
   position: absolute;
