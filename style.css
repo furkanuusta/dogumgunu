@@ -11,7 +11,7 @@ body, html {
   position: relative;
   width: 320px;
   height: auto; /* Yüksekliği otomatik yap */
-  margin: 500px auto 0 auto; /* Alt margin biraz boşluk için */
+  margin-top: 200px !important; /* Üst boşluğu artırdım, pastayı aşağı indirir */
   padding-bottom: 30px;
 }
 
@@ -19,7 +19,7 @@ body, html {
 
 .plate {
   position: absolute;
-  bottom: 30px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   width: 280px;
@@ -46,7 +46,7 @@ body, html {
 }
 
 #cake1 {
-  bottom: 45px;
+  bottom: 10px;
   z-index: 5;
 }
 #chocolate1 {
@@ -61,11 +61,11 @@ body, html {
   transform: translateX(-50%) translateY(-80px);
   transition: opacity 1s ease;
   z-index: 6;
-  bottom: 90px;
+  bottom: 55px;
 }
 
 #cake2 {
-  bottom: 105px;
+  bottom: 70px;
   z-index: 7;
 }
 #chocolate2 {
@@ -80,11 +80,11 @@ body, html {
   transform: translateX(-50%) translateY(-80px);
   transition: opacity 1s ease;
   z-index: 8;
-  bottom: 150px;
+  bottom: 115px;
 }
 
 #cake3 {
-  bottom: 165px;
+  bottom: 130px;
   z-index: 9;
 }
 
