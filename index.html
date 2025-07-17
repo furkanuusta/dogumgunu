@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doğum Günü Pastası</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doğum Günü</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="hearts-container"></div>
-
-  <div class="scene">
-    <div class="plate"></div>
-
-    <div id="cake1" class="cake-layer hidden"></div>
-    <div id="chocolate1" class="chocolate-layer hidden"></div>
-
-    <div id="cake2" class="cake-layer hidden"></div>
-    <div id="chocolate2" class="chocolate-layer hidden"></div>
-
-    <div id="cake3" class="cake-layer hidden"></div>
-    <div id="icing" class="icing hidden"></div>
-
-    <div id="candle" class="candle hidden">
-      <div class="flame"></div>
-    </div>
+  <!-- Giriş Animasyonu -->
+  <div class="intro-screen">
+    <img src="img/flower.png" class="flower" alt="Flower">
   </div>
 
-  <div id="mainContent" style="display: none;">
-    <h1>İyi ki doğdun...</h1>
-    <div id="sequenceTextContainer"></div>
-    <div class="photo-container">
-      <img src="kucukluk.jpg" alt="Küçüklük Fotoğrafı" />
-      <div class="caption">Her zaman bu küçük kız kadar mutlu ol 💜</div>
+  <!-- Ana İçerik -->
+  <div class="main-content">
+    <div class="photo-section">
+      <img src="img/cocukluk.jpg" alt="Çocukluk Fotoğrafı" class="responsive-photo">
+      <p class="message">Seninle geçen her an bir çiçek gibi güzeldi, iyi ki doğdun 🌸</p>
+    </div>
+
+    <div class="cake-container">
+      <div class="plate"></div>
+      <div class="cake-layer layer1"></div>
+      <div class="cake-layer layer2"></div>
+      <div class="cake-layer layer3"></div>
+      <div class="icing"></div>
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
     </div>
   </div>
 
