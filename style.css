@@ -11,7 +11,7 @@ body, html {
   position: relative;
   width: 320px;
   height: auto; /* Yüksekliği otomatik yap */
-  margin: 120px auto 40px auto; /* Alt margin biraz boşluk için */
+  margin: 500px auto 0 auto; /* Alt margin biraz boşluk için */
   padding-bottom: 30px;
 }
 
