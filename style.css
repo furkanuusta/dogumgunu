@@ -299,8 +299,28 @@ h1 {
   min-height: 50px;
 }
 
+.caption {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(251, 234, 255, 0.85);
+  padding: 8px 16px;
+  border-radius: 15px;
+  font-family: 'Comfortaa', cursive;
+  font-size: 16px;
+  color: #6a1b9a;
+  font-weight: 600;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
+  pointer-events: none;
+  word-wrap: break-word;
+  z-index: 20; /* Görünsün diye yüksek z-index */
+}
+
 .photo-container {
-  position: relative;  /* önemli! */
+  position: relative; /* Mutlaka relative olmalı */
   margin-top: 30px;
   width: 240px;
   max-width: 90vw;
@@ -314,17 +334,18 @@ h1 {
 .photo-container img {
   width: 100%;
   height: auto;
-  border-radius: 20px; /* tüm köşeler yuvarlak */
-  object-fit: contain;
+  border-radius: 20px;
   display: block;
+  object-fit: contain;
 }
 
+/* Caption üstte, mobilde de uyumlu olacak şekilde */
 .caption {
-  position: absolute;  /* Üstüne yerleştir */
-  top: 15px;           /* Fotoğrafın üstünden biraz içeri */
+  position: absolute;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(251, 234, 255, 0.8);  /* biraz transparan arka plan */
+  background: rgba(251, 234, 255, 0.85);
   padding: 8px 16px;
   border-radius: 15px;
   font-family: 'Comfortaa', cursive;
@@ -334,22 +355,18 @@ h1 {
   max-width: 90%;
   text-align: center;
   box-shadow: 0 0 8px rgba(106, 27, 154, 0.4);
-  pointer-events: none;  /* üstündeki yazı tıklamayı engellemesin */
+  pointer-events: none;
+  word-wrap: break-word;
+  z-index: 20; /* Görünsün diye yüksek z-index */
 }
 
 @media (max-width: 600px) {
   .photo-container {
     width: 80vw !important;
   }
-  h1 {
-    font-size: 40px;
-  }
-  #sequenceTextContainer {
-    font-size: 16px;
-  }
   .caption {
     font-size: 14px;
     padding: 6px 12px;
+    top: 8px;
   }
 }
-
