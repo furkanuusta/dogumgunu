@@ -4,15 +4,18 @@ body, html {
   height: 100%;
   background: #d66f94;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow: hidden; /* Scrollu tamamen kaldırdık */
+   /* Scrollu tamamen kaldırdık */
 }
 
 .scene {
   position: relative;
   width: 320px;
-  height: 350px;
-  margin: 120px auto 0 auto;
+  height: auto; /* Yüksekliği otomatik yap */
+  margin: 120px auto 40px auto; /* Alt margin biraz boşluk için */
+  padding-bottom: 30px;
 }
+
+
 
 .plate {
   position: absolute;
@@ -269,13 +272,13 @@ body, html {
 #mainContent {
   display: none;
   animation: fadeIn 2s ease forwards;
-  background: #d66f94; /* İlk sahnedeki arka plan ile aynı */
-  min-height: 100vh;
+  background: #d66f94;
+  min-height: auto; /* 100vh yerine auto */
   padding: 40px 20px 100px;
   text-align: center;
-  position: fixed; /* Tam ekran yap */
-  top: 0; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
+  position: relative; /* fixed kaldır */
+  top: auto; left: auto; right: auto; bottom: auto;
+  overflow: visible; /* scroll aktif olsun */
   z-index: 20;
 }
 
